@@ -1,27 +1,27 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "styled-components";
+
+import Home from "./components/Home";
+import User from "./components/User";
+
+const AppContainer = styled.div`
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 function App() {
-  const [helloWorld, setHelloWorld] = useState('Loading...')
-
-  useEffect(() => {
-    axios.get('http://localhost:5000').then(result => setHelloWorld(result.data))
-  }, [])
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Trombenext
-        </p>
-        <p>
-          {helloWorld}
-        </p>
-      </header>
-    </div>
+    <AppContainer>
+      <Router>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/user" component={User} />
+      </Router>
+    </AppContainer>
   );
 }
 
