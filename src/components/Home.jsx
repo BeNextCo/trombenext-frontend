@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-const HomeContainer = styled.div``
+const HomeContainer = styled.div``;
 
 const Title = styled.h1`
   display: inline;
   position: relative;
   font-size: 100px;
   letter-spacing: -5px;
-  color: rgba(0, 0, 255, 0.5);
-  opacity: 0.7;
-`
+  color: #012bad;
+  opacity: 0.6;
+`;
 
 const StyledLink = styled(Link)`
-  color: palevioletred;
+  color: #e0b222;
   font-size: 2em;
   font-weight: bold;
   margin: 1em;
@@ -23,14 +23,16 @@ const StyledLink = styled(Link)`
   border-radius: 3px;
   display: block;
   text-decoration: none;
-`
+`;
 
 const Home = () => {
-  const [helloWorld, setHelloWorld] = useState('Loading...')
+  const [helloWorld, setHelloWorld] = useState("Loading...");
 
   useEffect(() => {
-    axios.get('http://localhost:5000').then(result => setHelloWorld(result.data))
-  }, [])
+    axios
+      .get("http://localhost:5000")
+      .then(result => setHelloWorld(result.data));
+  }, []);
 
   return (
     <HomeContainer>
@@ -38,7 +40,7 @@ const Home = () => {
       <h2>{helloWorld}</h2>
       <StyledLink to="/">Link</StyledLink>
     </HomeContainer>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
