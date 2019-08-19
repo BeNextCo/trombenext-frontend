@@ -38,7 +38,7 @@ const Home = () => {
     <HomeContainer>
       <Title>Trombenext</Title>
       <h2>{helloWorld}</h2>
-      <StyledLink to="/">Link</StyledLink>
+      <StyledLink to="/user">Add user</StyledLink>
     </HomeContainer>
   );
 };
