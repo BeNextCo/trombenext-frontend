@@ -71,11 +71,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ### Stack technique
-- NodeJs
-- Express
 - React
 - Heroku
-- DB ?
+- DB : Mongo Atlas
 - Gitflow
 - Axios
 - Styled components
+- React Router 4
