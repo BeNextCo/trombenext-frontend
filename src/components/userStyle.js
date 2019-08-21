@@ -34,7 +34,7 @@ export const Form = styled.form`
   display: table;
   width: 100%;
 
-  &:invalid ${Input} {
+  /* &:invalid ${Input} {
     border-color: ${props => (props.isValid ? "none" : "red")};
-  }
+  } */
 `;
