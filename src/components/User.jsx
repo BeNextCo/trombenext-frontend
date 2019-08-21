@@ -8,7 +8,7 @@ import {
   Radio,
   Form
 } from "./userStyle";
-import api from "../config/api";
+import api from "../app/api";
 
 const User = () => {
   const handleSubmitForm = useCallback(event => {
