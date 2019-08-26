@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import {
   StyledUser,
   InputContainer,
@@ -8,52 +8,39 @@ import {
   Radio,
   Form
 } from "./userStyle";
+import api from "../app/api";
 
 const User = () => {
-  const [formData, setFormData] = useState({});
-  const [isValid, setIsValid] = useState(true);
-
-  useEffect(() => {
-    console.log("SendData to the API !", formData);
-  }, [formData]);
-
-  const stringifyFormData = fd => {
-    const data = {};
-    for (let key of fd.keys()) {
-      data[key] = fd.get(key);
-    }
-    return JSON.stringify(data, null, 2);
-  };
-
   const handleSubmitForm = useCallback(event => {
     event.preventDefault();
     if (!event.target.checkValidity()) {
-      setIsValid(false);
       console.log("NOT VALID");
       return;
     }
 
-    setIsValid(true);
-    const data = new FormData(event.target);
-    setFormData(stringifyFormData(data));
+    const formData = new FormData(event.target);
+    const data = {
+      first_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      gender: formData.get("gender")
+    };
+
+    api
+      .put("/profile", data)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   }, []);
 
   return (
     <StyledUser>
-      <Form
-        action=""
-        method="get"
-        onSubmit={handleSubmitForm}
-        noValidate
-        isValid={isValid}
-      >
+      <Form action="" method="get" onSubmit={handleSubmitForm} noValidate>
         <InputContainer>
           <Label htmlFor="lastname">Nom : </Label>
-          <Input type="text" name="lastname" id="lastname" required />
+          <Input type="text" name="last_name" id="lastname" required />
         </InputContainer>
         <InputContainer>
           <Label htmlFor="firstname">Prénom : </Label>
-          <Input type="text" name="firstname" id="firstname" required />
+          <Input type="text" name="first_name" id="firstname" required />
         </InputContainer>
         <InputContainer>
           <Label htmlFor="sexe">Sexe : </Label>
