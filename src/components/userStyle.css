@@ -1,0 +1,42 @@
+.classStyledUser {
+  text-align: center;
+  width: 400px;
+}
+
+.classInputContainer {
+  display: table-row;
+}
+
+.classInput {
+  display: table-cell;
+  margin-bottom: 10px;
+}
+
+.classLabel {
+  display: table-cell;
+  margin-bottom: 10px;
+  padding-right: 10px;
+}
+
+.classLabelForRadio {
+  padding-right: 0px;
+}
+
+.classRadio {
+  display: flex;
+  justify-content: center;
+  border-color: red;
+}
+
+.classForm {
+  display: table;
+  width: 100%;
+}
+
+.displayErrors input:invalid {
+  border-color: red;
+}
+
+.classTest {
+  background: blueviolet;
+}

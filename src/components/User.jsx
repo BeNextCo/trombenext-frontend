@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import {
   StyledUser,
   InputContainer,
@@ -9,15 +9,20 @@ import {
   Form
 } from "./userStyle";
 import api from "../app/api";
+import "./userStyle.css";
 
 const User = () => {
+  const [isInvalid, setIsInvalid] = useState(false);
+
   const handleSubmitForm = useCallback(event => {
     event.preventDefault();
     if (!event.target.checkValidity()) {
       console.log("NOT VALID");
+      setIsInvalid(true);
       return;
     }
 
+    setIsInvalid(false);
     const formData = new FormData(event.target);
     const data = {
       first_name: formData.get("first_name"),
@@ -33,16 +38,39 @@ const User = () => {
 
   return (
     <StyledUser>
-      <Form action="" method="get" onSubmit={handleSubmitForm} noValidate>
-        <InputContainer>
-          <Label htmlFor="lastname">Nom : </Label>
-          <Input type="text" name="last_name" id="lastname" required />
-        </InputContainer>
-        <InputContainer>
-          <Label htmlFor="firstname">Prénom : </Label>
-          <Input type="text" name="first_name" id="firstname" required />
-        </InputContainer>
-        <InputContainer>
+      <form
+        action=""
+        method="get"
+        onSubmit={handleSubmitForm}
+        noValidate
+        isInvalid={isInvalid}
+        className={isInvalid ? "displayErrors" : ""}
+      >
+        <div className="classInputContainer">
+          <label className="classLabel" htmlFor="lastname">
+            Nom :{" "}
+          </label>
+          <input
+            className="classInput"
+            type="text"
+            name="last_name"
+            id="lastname"
+            required
+          />
+        </div>
+        <div className="classInputContainer">
+          <label className="classLabel" htmlFor="firstname">
+            Prénom :{" "}
+          </label>
+          <input
+            className="classInput"
+            type="text"
+            name="first_name"
+            id="firstname"
+            required
+          />
+        </div>
+        {/* <InputContainer>
           <Label htmlFor="sexe">Sexe : </Label>
           <Radio>
             <Input type="radio" value={"man"} name="gender" id="man" required />
@@ -61,11 +89,11 @@ const User = () => {
         <InputContainer>
           <Label htmlFor="email">Email : </Label>
           <Input type="email" name="email" id="email" />
-        </InputContainer>
+        </InputContainer>*/}
         <InputContainer>
           <Input type="submit" value="Submit!" />
         </InputContainer>
-      </Form>
+      </form>
     </StyledUser>
   );
 };

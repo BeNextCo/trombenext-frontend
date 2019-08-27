@@ -12,6 +12,9 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
   display: table-cell;
   margin-bottom: 10px;
+  &:invalid {
+    border-color: blue;
+  }
 `;
 
 export const Label = styled.label`
@@ -33,4 +36,11 @@ export const Radio = styled.div`
 export const Form = styled.form`
   display: table;
   width: 100%;
+
+  &:invalid ${Input} {
+    border-color: ${props => {
+      console.log(props);
+      return props.isInvalid ? "red" : "none";
+    }};
+  }
 `;
