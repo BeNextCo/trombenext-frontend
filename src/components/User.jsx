@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import {
   StyledUser,
   InputContainer,
@@ -11,13 +11,16 @@ import {
 import api from "../app/api";
 
 const User = () => {
+  const [isFormError, setIsFormError] = useState(false);
+
   const handleSubmitForm = useCallback(event => {
     event.preventDefault();
     if (!event.target.checkValidity()) {
-      console.log("NOT VALID");
+      setIsFormError(true);
       return;
     }
 
+    setIsFormError(false);
     const formData = new FormData(event.target);
     const data = {
       first_name: formData.get("first_name"),
@@ -33,17 +36,23 @@ const User = () => {
 
   return (
     <StyledUser>
-      <Form action="" method="get" onSubmit={handleSubmitForm} noValidate>
+      <Form
+        action=""
+        method="get"
+        onSubmit={handleSubmitForm}
+        noValidate
+        isFormError={isFormError}
+      >
         <InputContainer>
-          <Label htmlFor="lastname">Nom : </Label>
+          <Label htmlFor="lastname">Nom * : </Label>
           <Input type="text" name="last_name" id="lastname" required />
         </InputContainer>
         <InputContainer>
-          <Label htmlFor="firstname">Prénom : </Label>
+          <Label htmlFor="firstname">Prénom * : </Label>
           <Input type="text" name="first_name" id="firstname" required />
         </InputContainer>
         <InputContainer>
-          <Label htmlFor="sexe">Sexe : </Label>
+          <Label htmlFor="sexe">Sexe * : </Label>
           <Radio>
             <Input type="radio" value={"man"} name="gender" id="man" required />
             <LabelForRadio htmlFor="man">Homme</LabelForRadio>

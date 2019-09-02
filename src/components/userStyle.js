@@ -12,6 +12,8 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
   display: table-cell;
   margin-bottom: 10px;
+  outline: none;
+  border: 1px solid lightgrey;
 `;
 
 export const Label = styled.label`
@@ -33,4 +35,8 @@ export const Radio = styled.div`
 export const Form = styled.form`
   display: table;
   width: 100%;
+
+  & ${Input}:invalid {
+    box-shadow: ${props => (props.isFormError ? "0 0 5px 1px red" : "none")};
+  }
 `;
