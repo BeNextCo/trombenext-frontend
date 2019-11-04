@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../app/api";
+import GoogleLoginButton from './GoogleLoginButton';
+import GoogleLogoutButton from './GoogleLogoutButton';
 
 const HomeContainer = styled.div``;
 
@@ -14,22 +15,18 @@ const Title = styled.h1`
   opacity: 0.6;
 `;
 
-const StyledLink = styled(Link)`
-  color: #e0b222;
-  font-size: 2em;
-  font-weight: bold;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border-radius: 3px;
-  display: block;
-  text-decoration: none;
-`;
+const fetchProfiles = (setProfiles) => {
+  api
+    .get("http://localhost:5000/profiles")
+    .then(result => setProfiles(result.data));
+}
 
 const Home = () => {
   const [helloWorld, setHelloWorld] = useState("Loading...");
+  const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
-    axios
+    api
       .get("http://localhost:5000")
       .then(result => setHelloWorld(result.data));
   }, []);
@@ -38,7 +35,10 @@ const Home = () => {
     <HomeContainer>
       <Title>Trombenext</Title>
       <h2>{helloWorld}</h2>
-      <StyledLink to="/user">Add user</StyledLink>
+      <GoogleLoginButton/> <GoogleLogoutButton/>
+      <br/><br/>
+      <button onClick={() => fetchProfiles(setProfiles)}>Fetch profiles</button>
+      {profiles.map((profile, index) => <div key={index}>{profile.first_name} {profile.last_name}<br/><br/></div>)}
     </HomeContainer>
   );
 };
