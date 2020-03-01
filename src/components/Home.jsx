@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import api from "../app/api";
-import GoogleLoginButton from './GoogleLoginButton';
 import GoogleLogoutButton from './GoogleLogoutButton';
 
 const HomeContainer = styled.div``;
@@ -35,7 +34,7 @@ const Home = () => {
     <HomeContainer>
       <Title>Trombenext</Title>
       <h2>{helloWorld}</h2>
-      <GoogleLoginButton/> <GoogleLogoutButton/>
+      <GoogleLogoutButton/>
       <br/><br/>
       <button onClick={() => fetchProfiles(setProfiles)}>Fetch profiles</button>
       {profiles.map((profile, index) => <div key={index}>{profile.first_name} {profile.last_name}<br/><br/></div>)}

@@ -4,6 +4,9 @@ import styled from "styled-components";
 
 import Home from "./components/Home";
 import User from "./components/User";
+import PrivateRoute from "./PrivateRoute";
+import Login from "./components/Login";
+import { isAuth } from "./app/auth";
 
 const AppContainer = styled.div`
   text-align: center;
@@ -15,11 +18,13 @@ const AppContainer = styled.div`
 `;
 
 function App() {
+  const isLogged = isAuth();
   return (
     <AppContainer>
       <Router>
-        <Route exact path="/" component={Home} />
-        <Route path="/user" component={User} />
+        <PrivateRoute exact path="/" component={Home} isLogged={isLogged} />
+        <PrivateRoute path="/user" component={User} isLogged={isLogged} />
+        <Route path="/login" component={Login} />
       </Router>
     </AppContainer>
   );

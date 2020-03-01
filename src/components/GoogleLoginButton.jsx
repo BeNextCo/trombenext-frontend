@@ -1,35 +1,29 @@
 import React from "react";
 import { GoogleLogin } from 'react-google-login';
-import api from "../app/api";
+import { setToken, isEmailValid } from "../app/auth";
+import { redirect } from "../app/tools";
+
+const {REACT_APP_GOOGLE_CLIENT_ID} = process.env
 
 const onSuccess = (response) => {
-  const token = response.Zi.id_token;
-  addIdTokenInHeaders(token);
-  login();
+  const email = response.profileObj.email
+  
+  if (!isEmailValid(email)) return; 
+
+  const token = response.uc.id_token;
+  
+  setToken(token)
+  redirect('/');
 }
 
 const onError = (response) => {
   throw new Error (response);
 }
 
-const addIdTokenInHeaders = (token) => {
-  api.interceptors.request.use((config) => {
-    config.headers.Authorization = token ? `Bearer ${token}` : '';
-    return config;
-  });
-}
-
-const login = () => {
-  api
-    .get('/login')
-    .then(response => console.log(response))
-    .catch(error => console.log(error));
-}
-
 const GoogleLoginButton = () => {
   return (
       <GoogleLogin
-        clientId="1012100771021-7ngu163464ko6e3hulchflcdoipaetlc.apps.googleusercontent.com"
+        clientId={REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Se connecter avec beNext"
         onSuccess={onSuccess}
         onFailure={onError}
