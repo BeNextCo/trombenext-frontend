@@ -1,33 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 
-import Home from "./components/Home";
-import User from "./components/User";
-import PrivateRoute from "./PrivateRoute";
-import Login from "./components/Login";
-import { isAuth } from "./app/auth";
-
-const AppContainer = styled.div`
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+import { useAuth } from "./hooks/useAuth";
+import { GlobalStyle } from "./styles/global";
+import LoadingPage from "./components/LoadingPage";
+import Routing from "./components/Routing";
 
 function App() {
-  const isLogged = isAuth();
+  const {isLoading, isLogged} = useAuth()
+
   return (
     <AppContainer>
-      <Router>
-        <PrivateRoute exact path="/" component={Home} isLogged={isLogged} />
-        <PrivateRoute path="/user" component={User} isLogged={isLogged} />
-        <Route path="/login" component={Login} />
-      </Router>
+      <GlobalStyle/>
+      {isLoading ? <LoadingPage/> : <Routing isLogged={isLogged} /> }
     </AppContainer>
   );
 }
+
+const AppContainer = styled.div``
 
 export default App;
