@@ -1,17 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import { PRIMARY } from '../styles/color';
 
-function Loading({text}) {
-    return (
-        <LoaderContainer>
+export const Loading = ({text}) => (
+        <div>
             {text && <Message>{text}</Message>}
             <Loader />
-        </LoaderContainer>
+        </div>
     )
-}
 
 const size = '50px';
-const color = '#ef7f19';
 
 
 const Loader = styled.span`
@@ -23,8 +21,8 @@ const Loader = styled.span`
 
     border-radius: ${size};
     border: 6px solid transparent;
-    border-top-color: ${color};
-    border-bottom-color: ${color};
+    border-top-color: ${PRIMARY};
+    border-bottom-color: ${PRIMARY};
     animation: spin 1s linear infinite;
     &:after{
       content:'';
@@ -35,19 +33,13 @@ const Loader = styled.span`
       right: 5px;
       border-radius:${size};
       border: 6px solid transparent;
-      border-top-color: ${color};
-      border-bottom-color: ${color};
+      border-top-color: ${PRIMARY};
+      border-bottom-color: ${PRIMARY};
       opacity:0.6;
       animation: spinreverse 2s linear infinite;
     }
 `
 
-const LoaderContainer = styled.div`
-`
-
 const Message = styled.div`
     margin-bottom: 16px;
 `
-
-
-export default Loading

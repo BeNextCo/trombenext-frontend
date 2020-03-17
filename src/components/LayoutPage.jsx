@@ -1,17 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import Header from './Header'
+import { Header } from './Header'
 
-function LayoutPage({children}) {
-    return (
-        <LayoutPageContainer>
+export const LayoutPage = ({children}) => (
+        <div>
             <Header/>
             {children}
-        </LayoutPageContainer>
+        </div>
     )
-}
-
-const LayoutPageContainer = styled.div`
-`
-
-export default LayoutPage

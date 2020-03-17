@@ -1,16 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import GoogleLogoutButton from './GoogleLogoutButton'
-import { COLOR } from '../styles/global'
+import { GoogleLogoutButton } from './GoogleLogoutButton'
 
-function Header() {
-    return (
+import { PRIMARY } from '../styles/color'
+
+export const Header = () => (
         <HeaderContainer>
             <Title>Trombenext</Title>
             <GoogleLogoutButton/>
         </HeaderContainer>
     )
-}
 
 const HeaderContainer = styled.div`
     height: 60px;
@@ -25,7 +24,5 @@ const Title = styled.div`
     position: relative;
     font-size: 32px;
     letter-spacing: -2px;
-    color: ${COLOR.PRIMARY};
+    color: ${PRIMARY};
   `
-
-export default Header

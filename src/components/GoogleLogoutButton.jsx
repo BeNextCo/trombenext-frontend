@@ -10,14 +10,10 @@ const onLogoutSuccess = () => {
   redirect('/login')
 }
 
-const GoogleLogoutButton = ({className}) => {
-  return (
+export const GoogleLogoutButton = ({className}) => (
       <GoogleLogout className={className}
         clientId={REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Se déconnecter"
         onLogoutSuccess={onLogoutSuccess}
       />
-  );
-};
-
-export default GoogleLogoutButton;
+  )

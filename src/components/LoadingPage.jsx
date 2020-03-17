@@ -1,16 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import Loading from './Loading'
-import { COLOR } from '../styles/global'
+import { Loading } from './Loading'
+import { PRIMARY } from '../styles/color'
 
-function LoadingPage() {
-    return (
+export const LoadingPage = () => (
         <LoadingPageContainer>
             <Title>Trombenext</Title>
-            <Loading text={'Chargement de l\'application'}/>
+            <Loading text="Chargement de l'application"/>
         </LoadingPageContainer>
     )
-} 
   
 const LoadingPageContainer = styled.div`
     text-align: center;
@@ -28,7 +26,5 @@ const Title = styled.h1`
   position: relative;
   font-size: 100px;
   letter-spacing: -5px;
-  color: ${COLOR.PRIMARY};
+  color: ${PRIMARY};
 `
-
-export default LoadingPage

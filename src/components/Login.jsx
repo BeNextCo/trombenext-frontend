@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import GoogleLoginButton from './GoogleLoginButton';
 import { isEmailValid, setCredential, hasCredential } from "../app/auth";
 import { redirect } from "../app/tools";
-import Loading from "./Loading";
 import { authenticate } from '../hooks/useAuth'
+import { Loading } from "./Loading";
+import { GoogleLoginButton } from "./GoogleLoginButton";
 
-const Login = () => {
+export const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [hasToken, setHasToken] = useState(hasCredential())
 
@@ -17,7 +17,7 @@ const Login = () => {
   return (
     <LoginContainer>
       <Title>Trombenext</Title>
-      { isLoading && <Loading text={'Connexion en cours'} /> }
+      { isLoading && <Loading text='Connexion en cours' /> }
       { !hasToken && <GoogleLoginButton onSuccess={onSuccess} onError={onError} /> }
     </LoginContainer>
   );
@@ -60,5 +60,3 @@ const Title = styled.h1`
   color: #ef7f19;
   opacity: 1;
 `
-
-export default Login;

@@ -18,11 +18,3 @@ export const GlobalStyle = createGlobalStyle`
   }
 }
 `
-
-export const COLOR = {
-  PRIMARY: '#EF7F19',
-  SECONDARY: '#EB9444',
-  GREY_LIGHTHEN: '#E7E2DE',
-  GREY: '#4F453C',
-  BLACK: '#0F0801'
-}

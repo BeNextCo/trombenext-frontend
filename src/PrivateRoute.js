@@ -1,12 +1,8 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-function PrivateRoute({isLogged, children, ...routeProps}) {
-    return isLogged ? (
+export const PrivateRoute = ({isLogged, children, ...routeProps}) => isLogged ? (
         <Route {...routeProps}>{children}</Route>
     ) : (
     <Redirect to="/login" />
     )
-}
-
-export default PrivateRoute

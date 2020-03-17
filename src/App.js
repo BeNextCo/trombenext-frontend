@@ -1,22 +1,19 @@
 import React from "react";
-import styled from "styled-components";
 
 import { useAuth } from "./hooks/useAuth";
 import { GlobalStyle } from "./styles/global";
-import LoadingPage from "./components/LoadingPage";
-import Routing from "./components/Routing";
+import { Routing } from "./components/Routing";
+import { LoadingPage } from "./components/LoadingPage";
 
 function App() {
   const {isLoading, isLogged} = useAuth()
 
   return (
-    <AppContainer>
+    <div>
       <GlobalStyle/>
       {isLoading ? <LoadingPage/> : <Routing isLogged={isLogged} /> }
-    </AppContainer>
+    </div>
   );
 }
-
-const AppContainer = styled.div``
 
 export default App;
