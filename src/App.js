@@ -5,7 +5,7 @@ import { GlobalStyle } from "./styles/global";
 import { Routing } from "./components/Routing";
 import { LoadingPage } from "./components/LoadingPage";
 
-function App() {
+export const App = () => {
   const {isLoading, isLogged} = useAuth()
 
   return (
@@ -15,5 +15,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
