@@ -1,1 +1,1 @@
-export const redirect = path => document.location.href = path
+export const redirect = path => { document.location.href = path }
