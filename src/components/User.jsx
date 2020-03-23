@@ -10,7 +10,7 @@ import {
 } from "./userStyle";
 import api from "../app/api";
 
-const User = () => {
+export const User = () => {
   const [isFormError, setIsFormError] = useState(false);
 
   const handleSubmitForm = useCallback(event => {
@@ -78,5 +78,3 @@ const User = () => {
     </StyledUser>
   );
 };
-
-export default User;
